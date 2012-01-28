@@ -42,7 +42,7 @@ package fearOfTheDark.view.enemies
 		private var _time100px:Number;
 		private var _enemyState:int;
 		private var _enemyDir:int;
-		private var _target:Box;
+		private var _enemyTarget:Box;
 		
 		public var contacts:ContactList;
 		
@@ -58,8 +58,6 @@ package fearOfTheDark.view.enemies
 			listenWhileVisible(this, ContactEvent.BEGIN_CONTACT, handleContact);
 			contacts = new ContactList();
 			contacts.listenTo(this);
-			
-			init();
 		}
 		
 		public function init():void
@@ -67,6 +65,7 @@ package fearOfTheDark.view.enemies
 			time100px = 0;
 			enemyState = ENEMY_STATE_NONE;
 			enemyDir = ENEMY_DIR_NONE;
+			enemyTarget = null;
 			setTimeout(updateEnemy, 50);
 		}
 		
@@ -113,10 +112,15 @@ package fearOfTheDark.view.enemies
 			return _enemyState;
 		}
 		
-		public function setTarget(t:Box):void
+		[Inspectable(defaultValue=null)]
+		public function set enemyTarget(t:Box):void
 		{
-			_target = t;
-			trace("!!!! " + _target.name);
+			_enemyTarget = t;
+		}
+		
+		public function get enemyTarget():Box
+		{
+			return _enemyTarget;
 		}
 		
 		// AI
@@ -183,6 +187,10 @@ package fearOfTheDark.view.enemies
 			}
 			
 			setTimeout(updateEnemy, 50);
+		}
+		
+		protected function enemyStop():void
+		{
 		}
 		
 		protected function enemyNone():void
