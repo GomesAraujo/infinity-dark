@@ -1,4 +1,4 @@
-package fearOfTheDark 
+package  
 {
 	import flash.display.MovieClip;
 	
