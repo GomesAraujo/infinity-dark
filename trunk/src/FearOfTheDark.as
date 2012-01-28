@@ -1,6 +1,7 @@
 package   
 {
 	import flash.display.MovieClip;
+	import fearOfTheDark.view.enemies.*;
 	import wck.*;
 	
 	public class FearOfTheDark extends wck.WCK
@@ -9,8 +10,8 @@ package
 		{
 			super();
 			
-			//game.enemy1.setTarget(game.boxman);
-			//trace("!!!");
+			EnemyRunAfter(game["enemyRun"]).init();
+			EnemyRunAfter(game["enemyRun"]).enemyTarget = game["boxman"];
 		}
 	}
 }
