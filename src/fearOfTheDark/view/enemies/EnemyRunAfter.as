@@ -7,7 +7,7 @@ package fearOfTheDark.view.enemies
 	
 	public class EnemyRunAfter extends Enemy 
 	{
-		protected static const ENEMY_RUN_AFTER_ALERT_DISTANCE:int = 150;
+		private static const ENEMY_RUN_AFTER_ALERT_DISTANCE:int = 150;
 		
 		public function EnemyRunAfter() {	}
 		
@@ -23,7 +23,7 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyIdle():void
 		{
-			trace("target.x = " + enemyTarget.x);
+			//trace("target.x = " + enemyTarget.x);
 			
 			if (Math.abs(x - enemyTarget.x) < ENEMY_RUN_AFTER_ALERT_DISTANCE)
 			{

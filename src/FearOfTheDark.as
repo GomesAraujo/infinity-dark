@@ -12,6 +12,9 @@ package
 			
 			EnemyRunAfter(game["enemyRun"]).init();
 			EnemyRunAfter(game["enemyRun"]).enemyTarget = game["boxman"];
+			
+			EnemyJumper(game["enemyJumper"]).init();
+			EnemyJumper(game["enemyJumper"]).enemyTarget = game["boxman"];
 		}
 	}
 }
