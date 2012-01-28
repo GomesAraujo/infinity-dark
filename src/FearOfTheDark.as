@@ -10,7 +10,7 @@ package
 			super();
 			
 			//game.enemy1.setTarget(game.boxman);
-			trace("!!!");
+			//trace("!!!");
 		}
 	}
 }
