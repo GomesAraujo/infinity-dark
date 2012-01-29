@@ -130,6 +130,7 @@ package fearOfTheDark.view.enemies
 			var dot:Number = -1;
 			
 			// Search for the most ground/floor-like contact.
+			/*
 			if (!contacts.isEmpty())
 			{
 				contacts.forEach(function(keys:Array, c:ContactEvent)
@@ -150,7 +151,7 @@ package fearOfTheDark.view.enemies
 				});
 				contacts.clean();
 			}
-			
+			*/
 			switch (enemyState)
 			{
 				case ENEMY_STATE_NONE:

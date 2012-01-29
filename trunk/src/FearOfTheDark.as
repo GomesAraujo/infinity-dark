@@ -1,8 +1,9 @@
-package
+﻿package
 {
 	import flash.display.MovieClip;
 	import fearOfTheDark.view.enemies.*;
 	import fearOfTheDark.view.ui.*;
+	import flash.events.Event;
 	import wck.*;
 	
 	public class FearOfTheDark extends wck.WCK
@@ -11,18 +12,27 @@ package
 		{
 			super();
 			
-			EnemyRunAfter(game["enemyRun"]).init();
-			EnemyRunAfter(game["enemyRun"]).enemyTarget = game["boxman"];
+			EnemyRunAfter(worldGame["enemyRun"]).init();
+			EnemyRunAfter(worldGame["enemyRun"]).enemyTarget = worldGame["boxman"];
 			
-			EnemyJumper(game["enemyJumper"]).init();
-			EnemyJumper(game["enemyJumper"]).enemyTarget = game["boxman"];
+			EnemyJumper(worldGame["enemyJumper"]).init();
+			EnemyJumper(worldGame["enemyJumper"]).enemyTarget = worldGame["boxman"];
 			
-			EnemyBoss(game["enemyBoss"]).init();
-			EnemyBoss(game["enemyBoss"]).enemyTarget = game["boxman"];
-			EnemyBoss(game["enemyBoss"]).registerRocks(game["rock1"], game["rock2"], game["rock3"]);
+			EnemyBoss(worldGame["enemyBoss"]).init();
+			EnemyBoss(worldGame["enemyBoss"]).enemyTarget = worldGame["boxman"];
+			EnemyBoss(worldGame["enemyBoss"]).registerRocks(worldGame["rock1"], worldGame["rock2"], worldGame["rock3"]);
+						
+			Map(this["map"]).setStageLength(3834);
+			//Map(this["map"]).setBoyPositionInStage(worldGame.boxman.x);
 			
-			Map(game["map"]).setStageLength(10);
-			Map(game["map"]).setBoyPositionInStage(7);
+			
+			addEventListener(Event.ENTER_FRAME, updateMap);
+			
+		}
+		
+		function updateMap(evt:Event)
+		{		
+			Map(this["map"]).setBoyPositionInStage(worldGame.boxman.x);
 		}
 	}
 }
