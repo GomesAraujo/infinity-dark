@@ -109,12 +109,12 @@ package fearOfTheDark.view.enemies
 			switch (enemyDir)
 			{
 				case ENEMY_DIR_LEFT:
-					b2body.ApplyImpulse(new V2( -2.5, 0), b2body.GetWorldCenter());
+					b2body.ApplyImpulse(new V2( -5, 0), b2body.GetWorldCenter());
 					//b2body.SetLinearVelocity(new V2( -2, b2body.GetLinearVelocity().y));
 					break;
 					
 				case ENEMY_DIR_RIGHT:
-					b2body.ApplyImpulse(new V2( 2.5, 0), b2body.GetWorldCenter());
+					b2body.ApplyImpulse(new V2( 5, 0), b2body.GetWorldCenter());
 					//b2body.SetLinearVelocity(new V2(2, b2body.GetLinearVelocity().y));
 					break;
 			}

@@ -39,7 +39,11 @@
 				stage.focus = worldGame;
 				worldGame.focusRect = false;
 			}
+			retry.visible = false;
 			
+			retry.addEventListener(MouseEvent.CLICK, retryF1);
+			
+			worldGame.addEventListener("RETRY", retryEvent);
 			
 			EnemyRunAfter(worldGame["enemyRun"]).init();
 			EnemyRunAfter(worldGame["enemyRun"]).enemyTarget = worldGame["boxman"];
@@ -69,6 +73,17 @@
 			//bg_4.gotoAndStop(4);
 			
 			addEventListener(Event.ENTER_FRAME, updateUI);
+		}
+		
+		private function retryF1(evt:MouseEvent):void 
+		{
+			gotoAndStop(1);
+		}
+		
+		private function retryEvent(evt:Event):void 
+		{
+			retry.visible = true;
+			trace ("oi");
 		}
 		
 		function updateUI(evt:Event)
