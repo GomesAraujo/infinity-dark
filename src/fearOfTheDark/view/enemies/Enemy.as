@@ -231,6 +231,7 @@ package fearOfTheDark.view.enemies
 			active = false;
 			actionTime = 0;
 			currentTime = getTimer();
+			opacity = 0.7;
 			
 			enemyState = ENEMY_STATE_STUNNED;
 		}
@@ -251,6 +252,7 @@ package fearOfTheDark.view.enemies
 		{
 			active = true;
 			b2body.SetLinearVelocity(new V2(0, 0));
+			opacity = 1.0;
 			enemyDir == ENEMY_DIR_NONE;
 			enemyState = ENEMY_STATE_IDLE;
 		}
