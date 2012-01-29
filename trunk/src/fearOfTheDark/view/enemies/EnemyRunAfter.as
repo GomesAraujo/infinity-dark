@@ -7,7 +7,7 @@ package fearOfTheDark.view.enemies
 	
 	public class EnemyRunAfter extends Enemy 
 	{
-		private static const ENEMY_RUN_AFTER_ALERT_DISTANCE:int = 150;
+		private static const ENEMY_RUN_AFTER_ALERT_DISTANCE:int = 500;
 		
 		public function EnemyRunAfter() {	}
 		
@@ -101,13 +101,13 @@ package fearOfTheDark.view.enemies
 			switch (enemyDir)
 			{
 				case ENEMY_DIR_LEFT:
-					//b2body.ApplyImpulse(new V2( -0.08, 0), b2body.GetWorldCenter());
-					b2body.SetLinearVelocity(new V2( -2, b2body.GetLinearVelocity().y));
+					b2body.ApplyImpulse(new V2( -2.5, 0), b2body.GetWorldCenter());
+					//b2body.SetLinearVelocity(new V2( -2, b2body.GetLinearVelocity().y));
 					break;
 					
 				case ENEMY_DIR_RIGHT:
-					//b2body.ApplyImpulse(new V2( 0.08, 0), b2body.GetWorldCenter());
-					b2body.SetLinearVelocity(new V2(2, b2body.GetLinearVelocity().y));
+					b2body.ApplyImpulse(new V2( 2.5, 0), b2body.GetWorldCenter());
+					//b2body.SetLinearVelocity(new V2(2, b2body.GetLinearVelocity().y));
 					break;
 			}
 		}
