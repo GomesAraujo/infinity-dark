@@ -38,8 +38,16 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyAlert():void
 		{
-			if (x > enemyTarget.x)	{ enemyDir = ENEMY_DIR_LEFT; }
-			else 					{ enemyDir = ENEMY_DIR_RIGHT; }
+			if (x > enemyTarget.x)
+			{
+				scaleX = 1.0;
+				enemyDir = ENEMY_DIR_LEFT;
+			}
+			else
+			{
+				scaleX = -1.0;
+				enemyDir = ENEMY_DIR_RIGHT;
+			}
 			
 			if (Math.abs(x - enemyTarget.x) > ENEMY_RUN_AFTER_ALERT_DISTANCE)
 			{

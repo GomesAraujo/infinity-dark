@@ -88,10 +88,15 @@ package fearOfTheDark.view.enemies
 			lastTime = currentTime;
 			currentTime = getTimer();
 			
-			//if (isOffscreen())
+			if (x > enemyTarget.x)
 			{
-				if (x > enemyTarget.x)	{ enemyDir = ENEMY_DIR_LEFT; }
-				else 					{ enemyDir = ENEMY_DIR_RIGHT; }
+				scaleX = 1.0;
+				enemyDir = ENEMY_DIR_LEFT;
+			}
+			else
+			{
+				scaleX = -1.0;
+				enemyDir = ENEMY_DIR_RIGHT;
 			}
 			
 			switch (bossState)
