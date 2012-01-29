@@ -24,6 +24,11 @@
 						
 			Map(this["map"]).setStageLength(3834);
 			
+			worldGame.bg_1.gotoAndStop(1);
+			worldGame.bg_2.gotoAndStop(2);
+			worldGame.bg_3.gotoAndStop(3);
+			//bg_4.gotoAndStop(4);
+			
 			addEventListener(Event.ENTER_FRAME, updateMap);
 		}
 		
