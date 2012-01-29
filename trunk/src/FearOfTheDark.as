@@ -39,9 +39,9 @@
 			EnemyJumper(worldGame["enemyJumper"]).init();
 			EnemyJumper(worldGame["enemyJumper"]).enemyTarget = worldGame["boxman"];
 			
-			EnemyBoss(worldGame["enemyBoss"]).init();
-			EnemyBoss(worldGame["enemyBoss"]).enemyTarget = worldGame["boxman"];
-			EnemyBoss(worldGame["enemyBoss"]).registerRocks(worldGame["rock1"], worldGame["rock2"], worldGame["rock3"]);
+			//EnemyBoss(worldGame["enemyBoss"]).init();
+			//EnemyBoss(worldGame["enemyBoss"]).enemyTarget = worldGame["boxman"];
+			//EnemyBoss(worldGame["enemyBoss"]).registerRocks(worldGame["rock1"], worldGame["rock2"], worldGame["rock3"]);
 						
 			Map(this["map"]).setStageLength(3834);
 			
