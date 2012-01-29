@@ -36,7 +36,10 @@
 			if (this.currentFrame == 1)
 			{
 				gotoAndStop(3);
+				stage.focus = worldGame;
+				worldGame.focusRect = false;
 			}
+			
 			
 			EnemyRunAfter(worldGame["enemyRun"]).init();
 			EnemyRunAfter(worldGame["enemyRun"]).enemyTarget = worldGame["boxman"];
