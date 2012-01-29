@@ -1,4 +1,4 @@
-package fearOfTheDark.view.enemies
+﻿package fearOfTheDark.view.enemies
 {
 	import Box2DAS.*;
 	import Box2DAS.Collision.*;
@@ -231,7 +231,7 @@ package fearOfTheDark.view.enemies
 			active = false;
 			actionTime = 0;
 			currentTime = getTimer();
-			opacity = 0.7;
+			alpha = 0.7;
 			
 			enemyState = ENEMY_STATE_STUNNED;
 		}
@@ -252,7 +252,7 @@ package fearOfTheDark.view.enemies
 		{
 			active = true;
 			b2body.SetLinearVelocity(new V2(0, 0));
-			opacity = 1.0;
+			alpha = 1.0;
 			enemyDir == ENEMY_DIR_NONE;
 			enemyState = ENEMY_STATE_IDLE;
 		}
