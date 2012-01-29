@@ -4,14 +4,35 @@
 	import fearOfTheDark.view.enemies.*;
 	import fearOfTheDark.view.ui.*;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import wck.*;
 	
 	public class FearOfTheDark extends wck.WCK
 	{
 		public function FearOfTheDark()
 		{
-			super();
 			
+			super();
+			menu.btnStart.addEventListener(MouseEvent.CLICK, init);
+			menu.btnCredits.addEventListener(MouseEvent.CLICK, creditsHandler);
+		}
+		
+		private function creditsHandler(e:MouseEvent):void 
+		{
+			gotoAndStop(3);
+			creditos.btnBack.addEventListener(MouseEvent.CLICK, backClickHandler);
+		}
+		
+		private function backClickHandler(e:MouseEvent):void 
+		{
+			gotoAndStop(1);
+			menu.btnStart.addEventListener(MouseEvent.CLICK, init);
+			menu.btnCredits.addEventListener(MouseEvent.CLICK, creditsHandler);
+		}
+		
+		private function init(event:Event=null):void
+		{
+			gotoAndStop(2);
 			EnemyRunAfter(worldGame["enemyRun"]).init();
 			EnemyRunAfter(worldGame["enemyRun"]).enemyTarget = worldGame["boxman"];
 			
