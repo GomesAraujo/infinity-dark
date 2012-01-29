@@ -251,6 +251,7 @@ package fearOfTheDark.view.enemies
 		{
 			active = true;
 			b2body.SetLinearVelocity(new V2(0, 0));
+			enemyDir == ENEMY_DIR_NONE;
 			enemyState = ENEMY_STATE_IDLE;
 		}
 		
