@@ -32,6 +32,9 @@ package fearOfTheDark.view.enemies
 		private static const ENEMY_BOSS_RUN_DURATION_MS:int = 3000;
 		private static const ENEMY_BOSS_RECOVER_DURATION_MS:int = 3000;
 		
+		private static const ENEMY_BOSS_WALK_IMPULSE_X:Number = 0.12;
+		private static const ENEMY_BOSS_RUN_IMPULSE_X:Number = 0.08;
+		
 		private var rock1:EnemyBossRock;
 		private var rock2:EnemyBossRock;
 		private var rock3:EnemyBossRock;
@@ -129,7 +132,6 @@ package fearOfTheDark.view.enemies
 					break;
 			}
 			
-			trace("rocksState = " + rocksState);
 			switch (rocksState)
 			{
 				case ENEMY_BOSS_ROCKS_STATE_NONE:
@@ -219,14 +221,19 @@ package fearOfTheDark.view.enemies
 		{
 			super.updateEnemy();
 			
+			var impulseX:Number = 0;
+			
+			if (bossState == ENEMY_BOSS_STATE_RUNNING)	{ impulseX = ENEMY_BOSS_RUN_IMPULSE_X;  }
+			else										{ impulseX = ENEMY_BOSS_WALK_IMPULSE_X;  }
+			
 			switch (enemyDir)
 			{
 				case ENEMY_DIR_LEFT:
-					b2body.ApplyImpulse(new V2( -0.08, 0), b2body.GetWorldCenter());
+					b2body.ApplyImpulse(new V2(-impulseX, 0), b2body.GetWorldCenter());
 					break;
 					
 				case ENEMY_DIR_RIGHT:
-					b2body.ApplyImpulse(new V2( 0.08, 0), b2body.GetWorldCenter());
+					b2body.ApplyImpulse(new V2(impulseX, 0), b2body.GetWorldCenter());
 					break;
 			}
 		}
