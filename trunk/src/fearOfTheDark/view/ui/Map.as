@@ -1,0 +1,1 @@
+﻿package fearOfTheDark.view.ui{	import flash.display.*;		public class Map extends MovieClip	{		private var stageLength:Number;				public function Map():void { }				public function setStageLength(l:Number):void		{			stageLength = l;		}				public function setBoyPositionInStage(p:Number):void		{			rotation = -(p / stageLength) * 360.0;		}	}}
