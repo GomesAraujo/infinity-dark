@@ -42,8 +42,16 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyIdleToAlert():void
 		{
-			if (x > enemyTarget.x)	{ enemyDir = ENEMY_DIR_LEFT; }
-			else 					{ enemyDir = ENEMY_DIR_RIGHT; }
+			if (x > enemyTarget.x)
+			{
+				scaleX = 1.0;
+				enemyDir = ENEMY_DIR_LEFT;
+			}
+			else
+			{
+				scaleX = -1.0;
+				enemyDir = ENEMY_DIR_RIGHT;
+			}
 			
 			currentTime = getTimer();
 			actionTime = 0;
