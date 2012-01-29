@@ -129,6 +129,7 @@ package fearOfTheDark.view.enemies
 		
 		public function receiveDamage():void
 		{
+			enemyState = ENEMY_STATE_STUN;
 		}
 		
 		public function freezeEnemy():void
@@ -230,6 +231,8 @@ package fearOfTheDark.view.enemies
 			active = false;
 			actionTime = 0;
 			currentTime = getTimer();
+			
+			enemyState = ENEMY_STATE_STUNNED;
 		}
 		
 		protected function enemyStunned():void
@@ -247,6 +250,7 @@ package fearOfTheDark.view.enemies
 		protected function enemyRecover():void
 		{
 			active = true;
+			b2body.SetLinearVelocity(new V2(0, 0));
 			enemyState = ENEMY_STATE_IDLE;
 		}
 		
