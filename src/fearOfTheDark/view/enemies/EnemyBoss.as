@@ -92,7 +92,7 @@ package fearOfTheDark.view.enemies
 			lastTime = currentTime;
 			currentTime = getTimer();
 			
-			if (isOffscreen())
+			//if (isOffscreen())
 			{
 				if (x > enemyTarget.x)	{ enemyDir = ENEMY_DIR_LEFT; }
 				else 					{ enemyDir = ENEMY_DIR_RIGHT; }
@@ -251,11 +251,6 @@ package fearOfTheDark.view.enemies
 		override protected function enemyStop():void
 		{
 			b2body.SetLinearVelocity(new V2(0, 0));
-		}
-		
-		private function isOffscreen():Boolean
-		{
-			return true;
 		}
 	}
 }
