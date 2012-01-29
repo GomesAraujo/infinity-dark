@@ -18,7 +18,7 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyNone():void
 		{
-			enemyState = ENEMY_STATE_IDLE;
+			super.enemyNone();
 		}
 		
 		override protected function enemyIdle():void
@@ -56,14 +56,42 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyStun():void
 		{
+			super.enemyStun();
 		}
 		
 		override protected function enemyStunned():void
 		{
+			super.enemyStunned();
 		}
 		
 		override protected function enemyRecover():void
 		{
+			super.enemyRecover();
+		}
+		
+		override protected function enemyFreeze():void
+		{
+			super.enemyFreeze();
+		}
+		
+		override protected function enemyFrozen():void
+		{
+			super.enemyFrozen();
+		}
+		
+		override protected function enemyTurn():void
+		{
+			super.enemyTurn();
+		}
+		
+		override protected function enemyTurning():void
+		{
+			super.enemyTurning();
+		}
+		
+		override protected function enemyTurned():void
+		{
+			super.enemyTurned();
 		}
 		
 		override protected function updateEnemy():void

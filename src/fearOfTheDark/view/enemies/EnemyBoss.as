@@ -40,10 +40,7 @@ package fearOfTheDark.view.enemies
 		private var rock3:EnemyBossRock;
 		private var rocksTime:Number;
 		private var rocksState:int;
-		private var bossTime:Number;
 		private var bossState:int;
-		private var currentTime:int;
-		private var lastTime:int;
 		
 		public function EnemyBoss() {	}
 		
@@ -52,7 +49,6 @@ package fearOfTheDark.view.enemies
 			super.init();
 			rocksTime = 0;
 			rocksState = ENEMY_BOSS_ROCKS_STATE_NONE;
-			bossTime = 0;
 			bossState = ENEMY_BOSS_STATE_NONE;
 		}
 		
@@ -107,25 +103,25 @@ package fearOfTheDark.view.enemies
 				case ENEMY_BOSS_STATE_WALKING:
 					if (Math.abs(x - enemyTarget.x) < ENEMY_BOSS_RUN_DISTANCE)
 					{
-						bossTime = 0;
+						actionTime = 0;
 						bossState = ENEMY_BOSS_STATE_RUNNING;
 					}
 					break;
 					
 				case ENEMY_BOSS_STATE_RUNNING:
-					bossTime += (currentTime - lastTime);
+					actionTime += (currentTime - lastTime);
 					
-					if (bossTime >= ENEMY_BOSS_RUN_DURATION_MS)
+					if (actionTime >= ENEMY_BOSS_RUN_DURATION_MS)
 					{
-						bossTime = 0;
+						actionTime = 0;
 						bossState = ENEMY_BOSS_STATE_RECOVER;
 					}
 					break;
 					
 				case ENEMY_BOSS_STATE_RECOVER:
-					bossTime += (currentTime - lastTime);
+					actionTime += (currentTime - lastTime);
 					
-					if (bossTime >= ENEMY_BOSS_RECOVER_DURATION_MS)
+					if (actionTime >= ENEMY_BOSS_RECOVER_DURATION_MS)
 					{
 						bossState = ENEMY_BOSS_STATE_RECOVER;
 					}
@@ -196,10 +192,6 @@ package fearOfTheDark.view.enemies
 						rock2.visible = false;
 						rock3.visible = false;
 						
-						//rock1.b2body.ApplyImpulse(new V2(0, -0.05), rock1.b2body.GetWorldCenter());
-						//rock2.b2body.ApplyImpulse(new V2(0, -0.05), rock2.b2body.GetWorldCenter());
-						//rock3.b2body.ApplyImpulse(new V2(0, -0.05), rock3.b2body.GetWorldCenter());
-						
 						rock1.active = false;
 						rock2.active = false;
 						rock3.active = false;
@@ -213,18 +205,51 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyAlertToIdle():void
 		{
+			enemyState = ENEMY_STATE_IDLE;
 		}
 		
 		override protected function enemyStun():void
 		{
+			super.enemyStun();
 		}
 		
 		override protected function enemyStunned():void
 		{
+			super.enemyStunned();
 		}
 		
 		override protected function enemyRecover():void
 		{
+			super.enemyRecover();
+		}
+		
+		override protected function enemyFreeze():void
+		{
+			super.enemyFreeze();
+			
+			rock1.freezeRock();
+			rock2.freezeRock();
+			rock3.freezeRock();
+		}
+		
+		override protected function enemyFrozen():void
+		{
+			super.enemyFrozen();
+		}
+		
+		override protected function enemyTurn():void
+		{
+			super.enemyTurn();
+		}
+		
+		override protected function enemyTurning():void
+		{
+			super.enemyTurning();
+		}
+		
+		override protected function enemyTurned():void
+		{
+			super.enemyTurned();
 		}
 		
 		override protected function updateEnemy():void

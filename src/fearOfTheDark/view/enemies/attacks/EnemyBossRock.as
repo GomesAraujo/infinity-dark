@@ -5,5 +5,10 @@ package fearOfTheDark.view.enemies.attacks
 	public class EnemyBossRock extends Box
 	{
 		public function EnemyBossRock() {	}
+		
+		public function freezeRock():void
+		{
+			active = false;
+		}
 	}
 }

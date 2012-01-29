@@ -40,8 +40,16 @@ package fearOfTheDark.view.enemies
 		protected static const ENEMY_STATE_RECOVER:int = 7;
 		protected static const ENEMY_STATE_FREEZE:int = 8;
 		protected static const ENEMY_STATE_FROZEN:int = 9;
+		protected static const ENEMY_STATE_TURN:int = 10;
+		protected static const ENEMY_STATE_TURNING:int = 11;
+		protected static const ENEMY_STATE_TURNED:int = 12;
 		
-		private var _time100px:Number;
+		protected static const ENEMY_STUN_DURATION_MS:Number = 5000;
+		
+		protected var actionTime:Number;
+		protected var currentTime:int;
+		protected var lastTime:int;
+		
 		private var _enemyState:int;
 		private var _enemyDir:int;
 		private var _enemyTarget:Box;
@@ -63,7 +71,7 @@ package fearOfTheDark.view.enemies
 		
 		public function init():void
 		{
-			time100px = 0;
+			actionTime = 0;
 			enemyState = ENEMY_STATE_NONE;
 			enemyDir = ENEMY_DIR_NONE;
 			enemyTarget = null;
@@ -78,17 +86,6 @@ package fearOfTheDark.view.enemies
 				Util.addChildAtPosOf(world, new FX(), p);  
 				p.remove();
 			}
-		}
-		
-		[Inspectable(defaultValue=0)]
-		public function set time100px(value:Number):void
-		{
-			_time100px = value;
-		}
-		
-		public function get time100px():Number
-		{
-			return _time100px;
 		}
 		
 		[Inspectable(defaultValue=ENEMY_DIR_NONE)]
@@ -186,6 +183,18 @@ package fearOfTheDark.view.enemies
 				case ENEMY_STATE_FROZEN:
 					enemyFrozen();
 					break;
+					
+				case ENEMY_STATE_TURN:
+					enemyTurn();
+					break;
+					
+				case ENEMY_STATE_TURNING:
+					enemyTurning();
+					break;
+					
+				case ENEMY_STATE_TURNED:
+					enemyTurned();
+					break;
 			}
 			
 			setTimeout(updateEnemy, 50);
@@ -197,6 +206,7 @@ package fearOfTheDark.view.enemies
 		
 		protected function enemyNone():void
 		{
+			enemyState = ENEMY_STATE_IDLE;
 		}
 		
 		protected function enemyIdle():void
@@ -217,14 +227,27 @@ package fearOfTheDark.view.enemies
 		
 		protected function enemyStun():void
 		{
+			active = false;
+			actionTime = 0;
+			currentTime = getTimer();
 		}
 		
 		protected function enemyStunned():void
 		{
+			lastTime = currentTime;
+			currentTime = getTimer();
+			actionTime += (currentTime - lastTime);
+			
+			if (actionTime >= ENEMY_STUN_DURATION_MS)
+			{
+				enemyState = ENEMY_STATE_RECOVER;
+			}
 		}
 		
 		protected function enemyRecover():void
 		{
+			active = true;
+			enemyState = ENEMY_STATE_IDLE;
 		}
 		
 		protected function enemyFreeze():void
@@ -234,6 +257,18 @@ package fearOfTheDark.view.enemies
 		}
 		
 		protected function enemyFrozen():void
+		{
+		}
+		
+		protected function enemyTurn():void
+		{
+		}
+		
+		protected function enemyTurning():void
+		{
+		}
+		
+		protected function enemyTurned():void
 		{
 		}
 		

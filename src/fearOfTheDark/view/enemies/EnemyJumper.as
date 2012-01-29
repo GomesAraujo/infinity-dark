@@ -17,23 +17,19 @@ package fearOfTheDark.view.enemies
 		private static const ENEMY_JUMPER_JUMP_STATE_UP:int = 1;
 		private static const ENEMY_JUMPER_JUMP_STATE_DOWN:int = 2;
 		
-		private var jumpTime:Number;
 		private var jumpState:int;
-		private var currentTime:int;
-		private var lastTime:int;
 		
 		public function EnemyJumper() {	}
 		
 		override public function init():void
 		{
 			super.init();
-			jumpTime = 0;
 			jumpState = ENEMY_JUMPER_JUMP_STATE_NONE;
 		}
 		
 		override protected function enemyNone():void
 		{
-			enemyState = ENEMY_STATE_IDLE;
+			super.enemyNone();
 		}
 		
 		override protected function enemyIdle():void
@@ -50,7 +46,7 @@ package fearOfTheDark.view.enemies
 			else 					{ enemyDir = ENEMY_DIR_RIGHT; }
 			
 			currentTime = getTimer();
-			jumpTime = 0;
+			actionTime = 0;
 			jumpState = ENEMY_JUMPER_JUMP_STATE_UP;
 			enemyState = ENEMY_STATE_ALERT;
 		}
@@ -59,23 +55,23 @@ package fearOfTheDark.view.enemies
 		{
 			lastTime = currentTime;
 			currentTime = getTimer();
-			jumpTime += (currentTime - lastTime);
+			actionTime += (currentTime - lastTime);
 			
 			//trace("jumpState = " + jumpState);
 			//trace("enemyState = " + enemyState);
 			//trace("--------------");
 			
-			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_UP) && (jumpTime >= ENEMY_JUMPER_JUMP_DURATION_MS))
+			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_UP) && (actionTime >= ENEMY_JUMPER_JUMP_DURATION_MS))
 			{
-				jumpTime = 0;
+				actionTime = 0;
 				jumpState = ENEMY_JUMPER_JUMP_STATE_DOWN;
 			}
 			else
 			
-			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_DOWN) && (jumpTime >= (ENEMY_JUMPER_JUMP_DURATION_MS * 0.8)) && (b2body.GetLinearVelocity().y <= 0.1))
+			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_DOWN) && (actionTime >= (ENEMY_JUMPER_JUMP_DURATION_MS * 0.8)) && (b2body.GetLinearVelocity().y <= 0.1))
 			{
 				enemyStop();
-				jumpTime = 0;
+				actionTime = 0;
 				jumpState = ENEMY_JUMPER_JUMP_STATE_NONE;
 				enemyDir = ENEMY_DIR_NONE;
 				enemyState = ENEMY_STATE_ALERT_TO_IDLE;
@@ -86,9 +82,9 @@ package fearOfTheDark.view.enemies
 		{
 			lastTime = currentTime;
 			currentTime = getTimer();
-			jumpTime += (currentTime - lastTime);
+			actionTime += (currentTime - lastTime);
 			
-			if (jumpTime >= ENEMY_JUMPER_JUMP_WAIT_MS)
+			if (actionTime >= ENEMY_JUMPER_JUMP_WAIT_MS)
 			{
 				enemyState = ENEMY_STATE_IDLE;
 			}
@@ -96,14 +92,42 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyStun():void
 		{
+			super.enemyStun();
 		}
 		
 		override protected function enemyStunned():void
 		{
+			super.enemyStunned();
 		}
 		
 		override protected function enemyRecover():void
 		{
+			super.enemyRecover();
+		}
+		
+		override protected function enemyFreeze():void
+		{
+			super.enemyFreeze();
+		}
+		
+		override protected function enemyFrozen():void
+		{
+			super.enemyFrozen();
+		}
+		
+		override protected function enemyTurn():void
+		{
+			super.enemyTurn();
+		}
+		
+		override protected function enemyTurning():void
+		{
+			super.enemyTurning();
+		}
+		
+		override protected function enemyTurned():void
+		{
+			super.enemyTurned();
 		}
 		
 		override protected function updateEnemy():void
