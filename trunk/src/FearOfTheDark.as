@@ -23,11 +23,8 @@
 			EnemyBoss(worldGame["enemyBoss"]).registerRocks(worldGame["rock1"], worldGame["rock2"], worldGame["rock3"]);
 						
 			Map(this["map"]).setStageLength(3834);
-			//Map(this["map"]).setBoyPositionInStage(worldGame.boxman.x);
-			
 			
 			addEventListener(Event.ENTER_FRAME, updateMap);
-			
 		}
 		
 		function updateMap(evt:Event)

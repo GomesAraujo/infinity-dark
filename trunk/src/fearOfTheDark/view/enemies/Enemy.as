@@ -38,6 +38,8 @@ package fearOfTheDark.view.enemies
 		protected static const ENEMY_STATE_STUN:int = 5;
 		protected static const ENEMY_STATE_STUNNED:int = 6;
 		protected static const ENEMY_STATE_RECOVER:int = 7;
+		protected static const ENEMY_STATE_FREEZE:int = 8;
+		protected static const ENEMY_STATE_FROZEN:int = 9;
 		
 		private var _time100px:Number;
 		private var _enemyState:int;
@@ -54,7 +56,6 @@ package fearOfTheDark.view.enemies
 			reportEndContact = true;
 			fixedRotation = true;
 			super.create();
-			//listenWhileVisible(world, StepEvent.STEP, parseInput, false, 10);
 			listenWhileVisible(this, ContactEvent.BEGIN_CONTACT, handleContact);
 			contacts = new ContactList();
 			contacts.listenTo(this);
@@ -123,35 +124,27 @@ package fearOfTheDark.view.enemies
 			return _enemyTarget;
 		}
 		
+		// Damage
+		public function hitBoy():void
+		{
+			trace(name + " KILLED BOY!");
+		}
+		
+		public function receiveDamage():void
+		{
+		}
+		
+		public function freezeEnemy():void
+		{
+			enemyState = ENEMY_STATE_FREEZE;
+		}
+		
 		// AI
 		protected function updateEnemy():void
 		{
 			var manifold:b2WorldManifold = null;
 			var dot:Number = -1;
 			
-			// Search for the most ground/floor-like contact.
-			/*
-			if (!contacts.isEmpty())
-			{
-				contacts.forEach(function(keys:Array, c:ContactEvent)
-				{
-					var wm:b2WorldManifold = c.getWorldManifold();
-					if (wm.normal)
-					{
-						// Dot producting the contact normal with gravity indicates how floor-like the
-						// contact is. If the dot product = 1, it is a flat foor. If it is -1, it is
-						// a ceiling. If it's 0.5, it's a sloped floor. Save the contact manifold
-						// that is the most floor like.
-						var d:Number = wm.normal.dot(gravity);
-						if(!manifold || d > dot) {
-							manifold = wm;
-							dot = d;
-						}
-					}
-				});
-				contacts.clean();
-			}
-			*/
 			switch (enemyState)
 			{
 				case ENEMY_STATE_NONE:
@@ -184,6 +177,14 @@ package fearOfTheDark.view.enemies
 					
 				case ENEMY_STATE_RECOVER:
 					enemyRecover();
+					break;
+					
+				case ENEMY_STATE_FREEZE:
+					enemyFreeze();
+					break;
+					
+				case ENEMY_STATE_FROZEN:
+					enemyFrozen();
 					break;
 			}
 			
@@ -226,9 +227,19 @@ package fearOfTheDark.view.enemies
 		{
 		}
 		
-		// Damage
-		private function receiveDamage(e:Event):void
+		protected function enemyFreeze():void
 		{
+			active = false;
+			enemyState = ENEMY_STATE_FROZEN;
+		}
+		
+		protected function enemyFrozen():void
+		{
+		}
+		
+		protected function isOffscreen():Boolean
+		{
+			return false;
 		}
 	}
 }
