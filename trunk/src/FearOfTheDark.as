@@ -15,6 +15,10 @@ package
 			
 			EnemyJumper(game["enemyJumper"]).init();
 			EnemyJumper(game["enemyJumper"]).enemyTarget = game["boxman"];
+			
+			EnemyBoss(game["enemyBoss"]).init();
+			EnemyBoss(game["enemyBoss"]).enemyTarget = game["boxman"];
+			EnemyBoss(game["enemyBoss"]).registerRocks(game["rock1"], game["rock2"], game["rock3"]);
 		}
 	}
 }
