@@ -73,18 +73,20 @@ package fearOfTheDark.view.enemies
 			switch (enemyDir)
 			{
 				case ENEMY_DIR_LEFT:
-					b2body.ApplyImpulse(new V2( -0.08, 0), b2body.GetWorldCenter());
+					//b2body.ApplyImpulse(new V2( -0.08, 0), b2body.GetWorldCenter());
+					b2body.SetLinearVelocity(new V2( -2, b2body.GetLinearVelocity().y));
 					break;
 					
 				case ENEMY_DIR_RIGHT:
-					b2body.ApplyImpulse(new V2( 0.08, 0), b2body.GetWorldCenter());
+					//b2body.ApplyImpulse(new V2( 0.08, 0), b2body.GetWorldCenter());
+					b2body.SetLinearVelocity(new V2(2, b2body.GetLinearVelocity().y));
 					break;
 			}
 		}
 		
 		override protected function enemyStop():void
 		{
-			b2body.SetLinearVelocity(new V2(0, b2body.GetLinearVelocity().y))
+			b2body.SetLinearVelocity(new V2(0, b2body.GetLinearVelocity().y));
 		}
 	}
 }
