@@ -158,27 +158,30 @@ package fearOfTheDark.view.enemies
 					rock1.syncTransform();
 					rock1.visible = true;
 					rock1.active = true;
-					rock1.b2body.ApplyImpulse(new V2(0, 0.1), rock1.b2body.GetWorldCenter());
+					rock1.b2body.SetLinearVelocity(new V2(0, 0));
+					rock1.b2body.ApplyImpulse(new V2(0, 0.05), rock1.b2body.GetWorldCenter());
 					
 					rock2.x = x + (Math.random() * ENEMY_BOSS_ROCKS_APPEAR_X_DELTA) * ((Math.random() > 0.5) ? 1.0 : -1.0);
 					rock2.y = ENEMY_BOSS_ROCKS_APPEAR_Y;
 					rock2.syncTransform();
 					rock2.visible = true;
 					rock2.active = true;
-					rock2.b2body.ApplyImpulse(new V2(0, 0.1), rock2.b2body.GetWorldCenter());
+					rock2.b2body.SetLinearVelocity(new V2(0, 0));
+					rock2.b2body.ApplyImpulse(new V2(0, 0.05), rock2.b2body.GetWorldCenter());
 					
 					rock3.x = x + (Math.random() * ENEMY_BOSS_ROCKS_APPEAR_X_DELTA) * ((Math.random() > 0.5) ? 1.0 : -1.0);
 					rock3.y = ENEMY_BOSS_ROCKS_APPEAR_Y;
 					rock3.syncTransform();
 					rock3.visible = true;
 					rock3.active = true;
-					rock3.b2body.ApplyImpulse(new V2(0, 0.1), rock3.b2body.GetWorldCenter());
+					rock3.b2body.SetLinearVelocity(new V2(0, 0));
+					rock3.b2body.ApplyImpulse(new V2(0, 0.05), rock3.b2body.GetWorldCenter());
 					
 					rocksState = ENEMY_BOSS_ROCKS_STATE_FALLING;
 					break;
 					
 				case ENEMY_BOSS_ROCKS_STATE_FALLING:
-					if ((rock1.b2body.GetLinearVelocity().y <= 0.1) && (rock2.b2body.GetLinearVelocity().y <= 0.1) && (rock3.b2body.GetLinearVelocity().y <= 0.1))
+					if ((rock1.b2body.GetLinearVelocity().y <= 0.05) && (rock2.b2body.GetLinearVelocity().y <= 0.05) && (rock3.b2body.GetLinearVelocity().y <= 0.05))
 					{
 						rocksTime = 0;
 						rocksState = ENEMY_BOSS_ROCKS_STATE_AFTER_FALL;
@@ -192,6 +195,10 @@ package fearOfTheDark.view.enemies
 						rock1.visible = false;
 						rock2.visible = false;
 						rock3.visible = false;
+						
+						//rock1.b2body.ApplyImpulse(new V2(0, -0.05), rock1.b2body.GetWorldCenter());
+						//rock2.b2body.ApplyImpulse(new V2(0, -0.05), rock2.b2body.GetWorldCenter());
+						//rock3.b2body.ApplyImpulse(new V2(0, -0.05), rock3.b2body.GetWorldCenter());
 						
 						rock1.active = false;
 						rock2.active = false;
@@ -243,7 +250,7 @@ package fearOfTheDark.view.enemies
 		
 		override protected function enemyStop():void
 		{
-			b2body.SetLinearVelocity(new V2(0, 0))
+			b2body.SetLinearVelocity(new V2(0, 0));
 		}
 		
 		private function isOffscreen():Boolean

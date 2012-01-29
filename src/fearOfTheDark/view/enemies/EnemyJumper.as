@@ -72,7 +72,7 @@ package fearOfTheDark.view.enemies
 			}
 			else
 			
-			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_DOWN) && (jumpTime >= (ENEMY_JUMPER_JUMP_DURATION_MS * 0.6)) && (b2body.GetLinearVelocity().y <= 0.1))
+			if ((jumpState == ENEMY_JUMPER_JUMP_STATE_DOWN) && (jumpTime >= (ENEMY_JUMPER_JUMP_DURATION_MS * 0.8)) && (b2body.GetLinearVelocity().y <= 0.1))
 			{
 				enemyStop();
 				jumpTime = 0;
@@ -119,12 +119,15 @@ package fearOfTheDark.view.enemies
 			if (jumpState == ENEMY_JUMPER_JUMP_STATE_UP)	{ impulseY = -ENEMY_JUMPER_JUMP_IMPULSE_Y; } else
 			if (jumpState == ENEMY_JUMPER_JUMP_STATE_DOWN)	{ impulseY =  ENEMY_JUMPER_JUMP_IMPULSE_Y * 0.1; }
 			
-			b2body.ApplyImpulse(new V2(impulseX, impulseY), b2body.GetWorldCenter());
+			if (enemyDir != ENEMY_DIR_NONE)
+			{
+				b2body.ApplyImpulse(new V2(impulseX, impulseY), b2body.GetWorldCenter());
+			}
 		}
 		
 		override protected function enemyStop():void
 		{
-			b2body.SetLinearVelocity(new V2(0, 0))
+			b2body.SetLinearVelocity(new V2(0, 0));
 		}
 	}
 }
